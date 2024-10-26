@@ -34,9 +34,6 @@ canvas.addEventListener("mousemove", (event) => {
 // task 3 Implement Shape Drawing Logic
 
 function drawShape(endX, endY) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);  // This clears only the previous frame
-
-    // Set color for drawing
     ctx.strokeStyle = color;
 
     if (currentTool === "line") {
@@ -55,5 +52,10 @@ function drawShape(endX, endY) {
         ctx.stroke();
     }
 }
-
-
+// task 4 Add Color Selection and Canvas Clearing
+document.getElementById("colorPicker").addEventListener("input", (event) => {
+    color = event.target.value;
+});
+document.getElementById("clearCanvasButton").addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
