@@ -31,6 +31,29 @@ canvas.addEventListener("mousemove", (event) => {
     const endY = event.offsetY;
     drawShape(endX, endY);
 });
+// task 3 Implement Shape Drawing Logic
 
+function drawShape(endX, endY) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // This clears only the previous frame
+
+    // Set color for drawing
+    ctx.strokeStyle = color;
+
+    if (currentTool === "line") {
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+    } else if (currentTool === "rectangle") {
+        const width = endX - startX;
+        const height = endY - startY;
+        ctx.strokeRect(startX, startY, width, height);
+    } else if (currentTool === "circle") {
+        const radius = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        ctx.beginPath();
+        ctx.arc(startX, startY, radius, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+}
 
 
